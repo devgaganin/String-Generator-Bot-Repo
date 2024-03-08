@@ -17,7 +17,7 @@ Best Telegram String Generator Repo for Pyrogram and Telethon made by [Team SPY]
 
 ## Heroku Method
 - After forking and editing click on below deploy button <br>
-  <a href="https://dashboard.heroku.com/deploy">
+  <a href="https://heroku.com/deploy">
      <img height="30px" src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku">
   </a>
 - Fill vars if you wish otherwise fill random abcd what you wish in ```environment``` Field that doesn't matter bcz you already filled that in ```config.py```
