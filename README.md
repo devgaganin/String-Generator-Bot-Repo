@@ -17,7 +17,7 @@ Best Telegram String Generator Repo for Pyrogram and Telethon made by [Team SPY]
   ```
 - Your bot hosted successfully on VPS / Local Host in CMD
 
-## 2) eroku Method
+## 2) Heroku Method
 - After forking and editing click on below deploy button <br>
   <a href="https://heroku.com/deploy">
      <img height="30px" src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku">
