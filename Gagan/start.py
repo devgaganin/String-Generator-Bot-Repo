@@ -4,11 +4,12 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from config import OWNER_ID
 
 # Initialize the database
-db = pickledb.load("user_db.db", False)
+db = pickledb.load("user_db.db", True)  # The second argument "True" creates the file if it doesn't exist
 
 def filter(cmd: str):
     return filters.private & filters.incoming & filters.command(cmd)
 
+GAGAN = 6964148334
 
 @Client.on_message(filter("start"))
 async def start(bot: Client, msg: Message):
@@ -16,6 +17,7 @@ async def start(bot: Client, msg: Message):
     user_id = msg.from_user.id
     if not db.exists(str(user_id)):
         db.set(str(user_id), True)
+        db.dump()  # Save changes to the database file
     await bot.send_animation(
         chat_id=msg.chat.id,
         animation="start.mp4",  # Replace "start.mp4" with the path to your animation file
@@ -39,3 +41,25 @@ Made with ❤️ by [Team SPY](https://t.me/dev_gagan)""",
             ]
         )
     )
+
+@Client.on_message(filter("broadcast") & filters.private)
+async def broadcast_command(client, message):
+    if message.from_user.id == GAGAN:  # Real Owner
+        await message.reply_text("Enter the message you want to broadcast:")
+        broadcast_text = message.text.split(" ", 1)[1]
+        delivered_count = 0
+        for user_id in db.getall():
+            try:
+                user_id = int(user_id)
+                await client.send_message(
+                    user_id, f"Broadcast message By @dev_gagan: {broadcast_text}"
+                )
+                delivered_count += 1
+            except ValueError:
+                pass
+
+        await client.send_message(
+            message.chat.id, f"Broadcast sent successfully to {delivered_count} users!"
+        )
+    else:
+        await message.reply_text("You are not authorized to use this command.")
