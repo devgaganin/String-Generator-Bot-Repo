@@ -1,15 +1,21 @@
+import pickledb
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
-
 from config import OWNER_ID
 
+# Initialize the database
+db = pickledb.load("user_db.db", False)
 
 def filter(cmd: str):
     return filters.private & filters.incoming & filters.command(cmd)
 
+
 @Client.on_message(filter("start"))
 async def start(bot: Client, msg: Message):
     me2 = (await bot.get_me()).mention
+    user_id = msg.from_user.id
+    if not db.exists(str(user_id)):
+        db.set(str(user_id), True)
     await bot.send_animation(
         chat_id=msg.chat.id,
         animation="start.mp4",  # Replace "start.mp4" with the path to your animation file
