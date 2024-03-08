@@ -1,6 +1,5 @@
 # String-Generator-Bot
-Best Telegram String Generator Repo for Pyrogram and Telethon made by [Team SPY](https://t.me/dev_gagan)
-Websit : devgagan.in
+Best Telegram String Generator Repo for Pyrogram and Telethon made by [Team SPY](https://t.me/dev_gagan) <br> Websit : devgagan.in
 # How to start
 - Fork the repo with any name or same name
 - edit ```config.py``` and write your own values and then save
